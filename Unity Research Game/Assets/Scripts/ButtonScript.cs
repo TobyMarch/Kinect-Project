@@ -13,6 +13,7 @@ public class ButtonScript : MonoBehaviour {
     /// The name of the gameObject to which the TranslationLayer script is attached
     /// </summary>
     public string intermediateObjectName = "Intermediate";
+	public static string mainCameraObjectName = "Main Camera";
 
     #region GUI controls
     /// <summary>
@@ -156,6 +157,8 @@ public class ButtonScript : MonoBehaviour {
     public void WholeBodyListenButtonPressed()
     {
         GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().StartListeningForWholeBodyGesture();
+		//Moves camera to position of first scene, renders game UI
+		GameObject.Find(mainCameraObjectName).GetComponent<gameCameraScript>().resetProgression();
     }
 
     #endregion

@@ -60,6 +60,7 @@ public class mySimpleTimer : MonoBehaviour
         {
             remainingTime = startTime * 1;
             isCounting = true;
+			//GameObject.Find("Intermediate").GetComponent<TranslationLayer>().feedbackText1.text = "Countdown Re-Started!";
         }
 
         /// <summary>
@@ -102,9 +103,11 @@ public class mySimpleTimer : MonoBehaviour
         /// </summary>
         public void UpdateMethod()
         {
+			//GameObject.Find("Intermediate").GetComponent<TranslationLayer>().feedbackText1.text = "Timer Is Updating";
             if (isCounting)
             {
-             
+            	//GameObject.Find("Intermediate").GetComponent<TranslationLayer>().feedbackText1.text = "Is Counting!";
+
                 if (remainingTime <= 0)
                 {
                     remainingTime = startTime;

@@ -153,7 +153,7 @@ public class TranslationLayer : MonoBehaviour {
     /// Keeps track of the number of succesful gestures the player makes in an execise
     /// </summary>
     public int exerciseScore = 0;
-
+	
     #endregion
 
     #region Lists and playback related variables
@@ -213,7 +213,7 @@ public class TranslationLayer : MonoBehaviour {
     /// Text also used for GUI feedback
     /// </summary>
     public GUIText feedbackText2;
-   
+	
     #endregion
 
     #region timer control variables
@@ -562,6 +562,7 @@ public class TranslationLayer : MonoBehaviour {
         /// </summary>
         public void StartListeningForWholeBodyGesture()
         {
+			
             //Play sounds!
             systemSounds.PlayGameStartSound();
             systemSounds.PlayGameBackgroundNoise();
@@ -582,8 +583,12 @@ public class TranslationLayer : MonoBehaviour {
 
             exerciseScore = 0; //reset score to 0
 
-            //make timer count down
-            countdownTimer.StartCountdown();
+            if (listeningForWholeBodyGesture){
+				//feedbackText1.text = "In SLFBG, exerciseScore = " + exerciseScore;
+			//make timer count down
+            	countdownTimer.StartCountdown();
+			}
+			
         }
 
         /// <summary>
@@ -744,6 +749,8 @@ public class TranslationLayer : MonoBehaviour {
             exerciseScore++; //add to score
 
             systemSounds.PlayGestureSuccessSound(); //play the sound
+		
+			
 
             //advance to next keypoint
             Debug.Log("Gesture Succesful! " + currentKeyPoint + " " + indicatorModelKeyPoint);
@@ -762,7 +769,7 @@ public class TranslationLayer : MonoBehaviour {
             else //finished holding gestures
             {
                 ExerciseHeldEvent();//
-                countdownTimer.StopCountdown();
+                //countdownTimer.StopCountdown();
             }
             
         }
@@ -803,7 +810,7 @@ public class TranslationLayer : MonoBehaviour {
             else //finished holding gestures
             {
                 ExerciseHeldEvent();//
-                countdownTimer.StopCountdown();
+                //countdownTimer.StopCountdown();
             }
         }
 
@@ -817,7 +824,7 @@ public class TranslationLayer : MonoBehaviour {
             listeningForWholeBodyGesture = false; //stop listening
             isCheckingForExercise = false;
             feedbackText1.text = "Exercise Complete:  " + exerciseScore + " / " + keypointsList.Count;
-        
+        	
             //stop playing some sounds
             systemSounds.StopAmbientMusic();
 
@@ -825,6 +832,13 @@ public class TranslationLayer : MonoBehaviour {
             systemSounds.PlayGameEndSound();
             systemSounds.PlayMusic();
             systemSounds.PlayBackgroundNoise();
+			
+			//Delete the previous gestureRecognitionClone, so that a new one might live
+			Destroy(gestureRecognitionClone);
+			cloneCreated = false;
+			//New code to determine whether player progresses, and set up animated objects
+			GameObject.Find("Main Camera").GetComponent<gameCameraScript>().checkProgression();
+			GameObject.Find("Main Camera").GetComponent<gameCameraScript>().SceneTransition();
         }
 
         /// <summary>
@@ -922,7 +936,7 @@ public class TranslationLayer : MonoBehaviour {
                 GameObject.Find(avatarGameObjectName).GetComponent<ExtendedZigSkeleton>()
                     .SeatedMode();
                 GameObject.Find(indicatorGameObjectName).GetComponent<ExtendedZigSkeleton>()
-        .SeatedMode();
+        			.SeatedMode();
             }
 
             else
