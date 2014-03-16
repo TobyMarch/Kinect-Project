@@ -5,11 +5,16 @@ public class PCAutoMove : MonoBehaviour {
 	#region public variables
 	[SerializeField]
 	public static float moveSpeed = 10.0f;
+	public string lastBCVisited;
 	#endregion
 	
 	// generic movement function
 	void autoMove () {
 		transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+	}
+	
+	void setLastBCVisited(string nameIn) {
+			lastBCVisited = nameIn;
 	}
 	
 	// Use this for initialization
