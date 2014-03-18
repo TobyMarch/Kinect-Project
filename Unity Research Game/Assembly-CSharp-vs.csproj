@@ -44,6 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\BDTranslationLayer.cs" />
      <Compile Include="Assets\Scripts\ButtonScript.cs" />
      <Compile Include="Assets\Scripts\CornerColliderScript.cs" />
      <Compile Include="Assets\Scripts\ExtendedZigSkeleton.cs" />
@@ -52,7 +53,6 @@
      <Compile Include="Assets\Scripts\SerializeScript.cs" />
      <Compile Include="Assets\Scripts\SoundScript.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonCamera.cs" />
-     <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
      <Compile Include="Assets\Scripts\TranslationLayer.cs" />
      <Compile Include="Assets\Scripts\anchorScript.cs" />
      <Compile Include="Assets\Scripts\balanceGUIScript.cs" />

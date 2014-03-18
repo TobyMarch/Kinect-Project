@@ -21,9 +21,9 @@ public class CornerColliderScript : MonoBehaviour {
 	// Called when a trigger zone first detects a gameObject with a RigidBody within its bounds
 	void OnTriggerEnter (Collider col) {
 		if (col.tag == "Player") {
-			Debug.Log("Entering " + gameObject.name);
+			//Debug.Log("Entering " + gameObject.name);
 			string lastVisited = col.GetComponent<PCAutoMove>().lastBCVisited;
-			Debug.Log("Last Visited:" + lastVisited);
+			//Debug.Log("Last Visited:" + lastVisited);
 			
 			numPositions = -1;
 			//Loop through valid pointers to adjacent box colliders
@@ -37,7 +37,7 @@ public class CornerColliderScript : MonoBehaviour {
 			}
 			//use standard C# random random object to select next node, from 0 [inclusive] to number of known positions + 1 [exclusive]
 			randomSelect = rand.Next(0,numPositions+1);
-			Debug.Log("option chosen: " + randomSelect);
+			//Debug.Log("option chosen: " + randomSelect);
 		}
 	}
 	
@@ -54,7 +54,7 @@ public class CornerColliderScript : MonoBehaviour {
 	//Called when trigger zone no longer detects a gameObject with a RigidBody 
 	void OnTriggerExit (Collider col) {
 		if (col.tag == "Player") {
-			Debug.Log("Exiting " + gameObject.name);
+			//Debug.Log("Exiting " + gameObject.name);
 			col.SendMessage("setLastBCVisited",gameObject.name);
 		}
 		
