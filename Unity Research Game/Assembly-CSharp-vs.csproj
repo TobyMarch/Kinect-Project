@@ -44,11 +44,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\BDTranslationLayer.cs" />
+     <Compile Include="Assets\Scripts\BDAutoMove.cs" />
+     <Compile Include="Assets\Scripts\BDGameScript.cs" />
      <Compile Include="Assets\Scripts\ButtonScript.cs" />
      <Compile Include="Assets\Scripts\CornerColliderScript.cs" />
      <Compile Include="Assets\Scripts\ExtendedZigSkeleton.cs" />
-     <Compile Include="Assets\Scripts\PCAutoMove.cs" />
      <Compile Include="Assets\Scripts\PlaceGuiTexture.cs" />
      <Compile Include="Assets\Scripts\SerializeScript.cs" />
      <Compile Include="Assets\Scripts\SoundScript.cs" />

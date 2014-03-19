@@ -501,7 +501,7 @@ public class TranslationLayer : MonoBehaviour {
                 gestureRecognitionClone = Instantiate(gestureRecognitionPrefab, avatarPosition, avatarRotation) as GameObject;
 
                 //make clone invisible
-                gestureRecognitionClone.GetComponentInChildren<Renderer>().enabled = false;
+                gestureRecognitionClone.GetComponentInChildren<Renderer>().enabled = true;
 
                 cloneCreated = true;//set flag to true
             }
@@ -837,8 +837,8 @@ public class TranslationLayer : MonoBehaviour {
 			Destroy(gestureRecognitionClone);
 			cloneCreated = false;
 			//New code to determine whether player progresses, and set up animated objects
-			GameObject.Find("Main Camera").GetComponent<gameCameraScript>().checkProgression();
-			GameObject.Find("Main Camera").GetComponent<gameCameraScript>().SceneTransition();
+			//GameObject.Find("Main Camera").GetComponent<gameCameraScript>().checkProgression();
+			//GameObject.Find("Main Camera").GetComponent<gameCameraScript>().SceneTransition();
         }
 
         /// <summary>

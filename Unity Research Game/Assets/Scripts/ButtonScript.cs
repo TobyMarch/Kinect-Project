@@ -158,7 +158,10 @@ public class ButtonScript : MonoBehaviour {
     {
         GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().StartListeningForWholeBodyGesture();
 		//Moves camera to position of first scene, renders game UI
-		GameObject.Find(mainCameraObjectName).GetComponent<gameCameraScript>().resetProgression();
+		//GameObject.Find(mainCameraObjectName).GetComponent<gameCameraScript>().resetProgression();
+		Debug.Log("Button Pressed!");
+		//GameObject.Find("Third Person PC").GetComponent<BDAutoMove>().startMoving();
+		GameObject.Find("Third Person PC").GetComponent<BDGameScript>().startGame();
     }
 
     #endregion

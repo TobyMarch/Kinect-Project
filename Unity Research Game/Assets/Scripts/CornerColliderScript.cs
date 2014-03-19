@@ -22,7 +22,7 @@ public class CornerColliderScript : MonoBehaviour {
 	void OnTriggerEnter (Collider col) {
 		if (col.tag == "Player") {
 			//Debug.Log("Entering " + gameObject.name);
-			string lastVisited = col.GetComponent<PCAutoMove>().lastBCVisited;
+			string lastVisited = col.GetComponent<BDAutoMove>().lastBCVisited;
 			//Debug.Log("Last Visited:" + lastVisited);
 			
 			numPositions = -1;
@@ -49,6 +49,10 @@ public class CornerColliderScript : MonoBehaviour {
 		if (distanceFromCenter < 1.0f) {
 			col.GetComponent<Transform>().LookAt(nextPosition[randomSelect]);
 		}
+		
+		Debug.DrawLine(transform.position, pointerA.transform.position, Color.green);
+		Debug.DrawLine(transform.position, pointerB.transform.position, Color.red);
+		Debug.DrawLine(transform.position, pointerC.transform.position, Color.cyan);
 	}
 	
 	//Called when trigger zone no longer detects a gameObject with a RigidBody 
@@ -84,8 +88,6 @@ public class CornerColliderScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.DrawLine(transform.position, pointerA.transform.position, Color.green);
-		Debug.DrawLine(transform.position, pointerB.transform.position, Color.red);
-		Debug.DrawLine(transform.position, pointerC.transform.position, Color.cyan);
+		
 	}
 }
