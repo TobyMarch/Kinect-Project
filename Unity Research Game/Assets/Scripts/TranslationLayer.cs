@@ -556,7 +556,15 @@ public class TranslationLayer : MonoBehaviour {
             else
                 listeningForWholeBodyGesture = false;
         }
-
+	
+		/// <summary>
+		/// Sets LFWB, instructs the system to listen for the next whole-body gesture
+		/// Used to step through the pose list in an event-drive manner
+		/// </summary>
+		void ListenForNextWholeBodyGesture ()
+		{
+		}
+	
         /// <summary>
         /// Makes system start listening for a full body gesture
         /// </summary>
@@ -578,7 +586,8 @@ public class TranslationLayer : MonoBehaviour {
 
             //make listening=true
             listeningForWholeBodyGesture = true;
-
+			feedbackText1.text = "LFWBG reset in START";
+		
             isCheckingForExercise = true;
 
             exerciseScore = 0; //reset score to 0
@@ -708,8 +717,9 @@ public class TranslationLayer : MonoBehaviour {
 
                 //stop checking for gesture
                 isHoldingGesture = false;
-                listeningForWholeBodyGesture = true;
-
+                //listeningForWholeBodyGesture = true;
+				//feedbackText1.text = "LFWBG reset in CHECK";
+			
                 //reset count
                 gestureCount = 0;
                 gestureScore = 0;
