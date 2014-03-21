@@ -508,6 +508,7 @@ public class TranslationLayer : MonoBehaviour {
 
             //check the current keypoint
             if (keypointsList != null)
+			{
                 if (keypointsList[currentKeyPoint] != null)
                 {
 
@@ -552,7 +553,7 @@ public class TranslationLayer : MonoBehaviour {
 
                 else
                     listeningForWholeBodyGesture = false;
-
+		}
             else
                 listeningForWholeBodyGesture = false;
         }
@@ -679,6 +680,7 @@ public class TranslationLayer : MonoBehaviour {
         {
             if (gestureCount < gestureHoldLength)
             {
+				Debug.Log("gestureCount = " + gestureCount);
                 //get data to check for pose
                 List<Transform> avatarPose =
         GameObject.Find(avatarGameObjectName).GetComponent<ExtendedZigSkeleton>().ReturnTransformsList();
