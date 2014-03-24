@@ -545,6 +545,9 @@ public class TranslationLayer : MonoBehaviour {
                         feedbackText2.text = "Holding Pose!";
                         isHoldingGesture = true; //initiate gesture
                         listeningForGesture = false; //disable listening for gesture
+						//New Code - experimenting with event-driven LFWBG
+						//listeningForWholeBodyGesture = false;
+						//Debug.Log("LFWBG switched off in LFWBG()");
                     }
 
                     else
@@ -562,8 +565,20 @@ public class TranslationLayer : MonoBehaviour {
 		/// Sets LFWB, instructs the system to listen for the next whole-body gesture
 		/// Used to step through the pose list in an event-drive manner
 		/// </summary>
-		void ListenForNextWholeBodyGesture ()
+		public void ListenForNextWholeBodyGesture ()
 		{
+			if (!listeningForWholeBodyGesture) {
+				//Sets LFWBG true
+				listeningForWholeBodyGesture = true;
+				Debug.Log("LFWBG turned on in LFNWBG()");
+				//Brings Indicator Model to correct pose
+				StartAnimatingIndicatorModel();
+				feedbackText1.text = "Ready for next Pose!";
+		
+          		//Re-starts game clock
+				countdownTimer.SetStartTime(gestureHoldLength);
+            	countdownTimer.StartCountdown();
+			}
 		}
 	
         /// <summary>
@@ -587,7 +602,7 @@ public class TranslationLayer : MonoBehaviour {
 
             //make listening=true
             listeningForWholeBodyGesture = true;
-			feedbackText1.text = "LFWBG reset in START";
+			feedbackText1.text = "LFWBG turned on in START";
 		
             isCheckingForExercise = true;
 
@@ -680,7 +695,7 @@ public class TranslationLayer : MonoBehaviour {
         {
             if (gestureCount < gestureHoldLength)
             {
-				Debug.Log("gestureCount = " + gestureCount);
+				//Debug.Log("gestureCount = " + gestureCount);
                 //get data to check for pose
                 List<Transform> avatarPose =
         GameObject.Find(avatarGameObjectName).GetComponent<ExtendedZigSkeleton>().ReturnTransformsList();
@@ -719,8 +734,14 @@ public class TranslationLayer : MonoBehaviour {
 
                 //stop checking for gesture
                 isHoldingGesture = false;
+				//Use the following lines to make sure that LFWBG runs automatically
                 //listeningForWholeBodyGesture = true;
 				//feedbackText1.text = "LFWBG reset in CHECK";
+				
+				//New Code - experimenting with event-driven LFWBG
+				//*Deprecated*
+				//listeningForWholeBodyGesture = false;
+				//Debug.Log("LFWBG switched off in CFG()");
 			
                 //reset count
                 gestureCount = 0;
@@ -773,9 +794,19 @@ public class TranslationLayer : MonoBehaviour {
 
                 indicatorModelKeyPoint++;
 
-                StartAnimatingIndicatorModel();
-
-                countdownTimer.ResetTimer();//reset timer
+                //StartAnimatingIndicatorModel();
+				
+				//New Code - experimenting with event-driven LFWBG
+				listeningForWholeBodyGesture = false;
+				Debug.Log("LFWBG switched off in GHE()");
+				StopAnimatingIndicatorModel();
+			
+				//New code to make the timer only reset when the system is listening for gestures (event-driven)
+				if (listeningForWholeBodyGesture) {
+                	countdownTimer.ResetTimer();//reset timer
+				}
+				//Test code to see if system can be continued via method call to ListenForNextWholeBodyGesture()
+				//ListenForNextWholeBodyGesture();
             }
 
             else //finished holding gestures
@@ -811,12 +842,21 @@ public class TranslationLayer : MonoBehaviour {
                 currentKeyPoint++; //increment current keypoint
 
                 indicatorModelKeyPoint++;
+				StopAnimatingIndicatorModel();
+				//feedbackText1.text = (keypointsList.Count-1) - indicatorModelKeyPoint + " key points remaining";
+				//Debug.Log("LFWBG set to " + listeningForWholeBodyGesture);
+				//New Code - experimenting with event-driven LFWBG
+				listeningForWholeBodyGesture = false;
+				Debug.Log("LFWBG switched off in GNHE()");
+				//New code to make the timer only reset when the system is listening for gestures (event-driven)
+				if (listeningForWholeBodyGesture) {
+					feedbackText1.text = "Animating to next pose...";
+                	StartAnimatingIndicatorModel();
 
-                StartAnimatingIndicatorModel();
+                	countdownTimer.SetStartTime(gestureHoldLength);
 
-                countdownTimer.SetStartTime(gestureHoldLength);
-
-                countdownTimer.StartCountdown();
+                	countdownTimer.StartCountdown();
+				}
             }
 
             else //finished holding gestures
@@ -892,6 +932,13 @@ public class TranslationLayer : MonoBehaviour {
                 indicatorAnimateSpeed;
 
         }
+		/// <summary>
+		/// Stops the animating indicator model.
+		/// </summary>
+		public void StopAnimatingIndicatorModel()
+		{
+			isAnimatingIndicatorModel = false;
+		}
 
         /// <summary>
         /// This method is called by tickEvent, and it smoothly animates the indicator model until the

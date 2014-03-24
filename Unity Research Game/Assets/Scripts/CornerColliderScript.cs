@@ -2,8 +2,12 @@ using UnityEngine;
 using System.Collections;
 
 public class CornerColliderScript : MonoBehaviour {
+	#region gameObject reference names
+	public static string mainCameraObjectName = "Main Camera";
+	public static string playerCharacterObjectName = "Third Person PC";
+	public string intermediateObjectName = "Intermediate";
+	#endregion
 	
-
 	public GameObject pointerA;
 	public GameObject pointerB;
 	public GameObject pointerC;
@@ -38,6 +42,8 @@ public class CornerColliderScript : MonoBehaviour {
 			//use standard C# random random object to select next node, from 0 [inclusive] to number of known positions + 1 [exclusive]
 			randomSelect = rand.Next(0,numPositions+1);
 			//Debug.Log("option chosen: " + randomSelect);
+			
+			GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().ListenForNextWholeBodyGesture();
 		}
 	}
 	
