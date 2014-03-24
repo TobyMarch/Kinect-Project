@@ -27,6 +27,14 @@ public class BDAutoMove : MonoBehaviour {
 		currentSpeed = moveSpeed;
 	}
 	
+	/// <summary>
+	/// Stops the player character
+	/// </summary>
+	public void stopMoving() {
+		Debug.Log("StopMoving Called!");
+		currentSpeed = 0.0f;
+	}
+	
 	void setLastBCVisited(string nameIn) {
 			lastBCVisited = nameIn;
 	}

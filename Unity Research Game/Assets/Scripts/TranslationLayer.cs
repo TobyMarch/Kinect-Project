@@ -891,6 +891,9 @@ public class TranslationLayer : MonoBehaviour {
 			//New code to determine whether player progresses, and set up animated objects
 			//GameObject.Find("Main Camera").GetComponent<gameCameraScript>().checkProgression();
 			//GameObject.Find("Main Camera").GetComponent<gameCameraScript>().SceneTransition();
+		
+			//Stop the BDGameScript
+			GameObject.Find("Third Person PC").GetComponent<BDGameScript>().endGame();
         }
 
         /// <summary>

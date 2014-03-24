@@ -43,7 +43,7 @@ public class CornerColliderScript : MonoBehaviour {
 			randomSelect = rand.Next(0,numPositions+1);
 			//Debug.Log("option chosen: " + randomSelect);
 			
-			GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().ListenForNextWholeBodyGesture();
+			
 		}
 	}
 	
@@ -66,6 +66,11 @@ public class CornerColliderScript : MonoBehaviour {
 		if (col.tag == "Player") {
 			//Debug.Log("Exiting " + gameObject.name);
 			col.SendMessage("setLastBCVisited",gameObject.name);
+			
+			//Call directly to the translation layer (will be replaced)
+			//GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().ListenForNextWholeBodyGesture();
+			//Call to BDGameScript
+			col.GetComponent<BDGameScript>().triggerNextPose();
 		}
 		
 	}
