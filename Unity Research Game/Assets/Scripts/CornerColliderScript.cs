@@ -41,9 +41,7 @@ public class CornerColliderScript : MonoBehaviour {
 			}
 			//use standard C# random random object to select next node, from 0 [inclusive] to number of known positions + 1 [exclusive]
 			randomSelect = rand.Next(0,numPositions+1);
-			//Debug.Log("option chosen: " + randomSelect);
-			
-			
+			Debug.Log("option chosen: " + randomSelect);
 		}
 	}
 	
