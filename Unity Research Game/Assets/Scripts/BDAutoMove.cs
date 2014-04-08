@@ -10,6 +10,7 @@ public class BDAutoMove : MonoBehaviour {
 	
 	#region private variables
 	private float currentSpeed = 0.0f;
+	private Vector3 savedDestination;
 	#endregion
 	
 	/// <summary>
@@ -35,8 +36,17 @@ public class BDAutoMove : MonoBehaviour {
 		currentSpeed = 0.0f;
 	}
 	
-	void setLastBCVisited(string nameIn) {
+	public void setLastBCVisited(string nameIn) {
 			lastBCVisited = nameIn;
+	}
+	
+	public void setSavedDest (Vector3 destIn) {
+		//Debug.Log("SavedDest called!");
+		savedDestination = destIn;
+	}
+	
+	public Vector3 getSavedDest () {
+		return savedDestination;
 	}
 	
 	// Use this for initialization

@@ -41,34 +41,39 @@ public class CornerColliderScript : MonoBehaviour {
 			}
 			//use standard C# random random object to select next node, from 0 [inclusive] to number of known positions + 1 [exclusive]
 			randomSelect = rand.Next(0,numPositions+1);
-			Debug.Log("option chosen: " + randomSelect);
+			//Debug.Log("option chosen: " + randomSelect);
 		}
 	}
 	
 	//Called when a trigger zone re-checks and finds the same gameObject
 	void OnTriggerStay (Collider col) {
-		float distanceFromCenter = Vector3.Distance(col.transform.position, gameObject.transform.position);
-		//Debug.Log("Distance from center: " + distanceFromCenter);
-		//As Player Character approaches center of the trigger zone, redirect it to the newly-selected point
-		if (distanceFromCenter < 1.0f) {
-			col.GetComponent<Transform>().LookAt(nextPosition[randomSelect]);
+		if (col.tag == "Player") {
+			float distanceFromCenter = Vector3.Distance(col.transform.position, gameObject.transform.position);
+			//Debug.Log("Distance from center: " + distanceFromCenter);
+			//As Player Character approaches center of the trigger zone, redirect it to the newly-selected point
+			if (distanceFromCenter < 1.0f) {
+				col.GetComponent<Transform>().LookAt(nextPosition[randomSelect]);
+				Debug.Log("HEY LOOK A DEBUG MESSAGE");
+				col.GetComponent<BDAutoMove>().setSavedDest(nextPosition[randomSelect]);
+			}
+			
+			Debug.DrawLine(transform.position, pointerA.transform.position, Color.green);
+			Debug.DrawLine(transform.position, pointerB.transform.position, Color.red);
+			Debug.DrawLine(transform.position, pointerC.transform.position, Color.cyan);
 		}
-		
-		Debug.DrawLine(transform.position, pointerA.transform.position, Color.green);
-		Debug.DrawLine(transform.position, pointerB.transform.position, Color.red);
-		Debug.DrawLine(transform.position, pointerC.transform.position, Color.cyan);
 	}
 	
 	//Called when trigger zone no longer detects a gameObject with a RigidBody 
 	void OnTriggerExit (Collider col) {
 		if (col.tag == "Player") {
 			//Debug.Log("Exiting " + gameObject.name);
-			col.SendMessage("setLastBCVisited",gameObject.name);
-			
+			//col.SendMessage("setLastBCVisited",gameObject.name);
+			col.GetComponent<BDAutoMove>().setLastBCVisited(gameObject.name);
 			//Call directly to the translation layer (will be replaced)
 			//GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().ListenForNextWholeBodyGesture();
 			//Call to BDGameScript
 			col.GetComponent<BDGameScript>().triggerNextPose();
+			
 		}
 		
 	}
