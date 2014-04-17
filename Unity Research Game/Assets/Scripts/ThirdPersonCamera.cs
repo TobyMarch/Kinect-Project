@@ -34,6 +34,8 @@ public class ThirdPersonCamera : MonoBehaviour {
 	[SerializeField]
 	private Transform follow;
 	private Vector3 targetPosition;
+	private GameObject thirdPersonCharacter;
+	
 	#endregion
 	
 	#region Properties (public)
@@ -46,6 +48,9 @@ public class ThirdPersonCamera : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		follow = GameObject.FindWithTag("Player").transform;
+		thirdPersonCharacter = GameObject.Find("Third Person PC");
+		Debug.Log("TPC: " + thirdPersonCharacter.name);
+		//follow = thirdPersonCharacter.transform;
 	}
 	
 	// Update is called once per frame
@@ -65,7 +70,9 @@ public class ThirdPersonCamera : MonoBehaviour {
 		transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * smooth);
 		
 		// make sure the camera is looking the right way!
-		transform.LookAt(follow);
+		if (thirdPersonCharacter.GetComponent<BDAutoMove>().getDirectCameraFollow()) {
+			transform.LookAt(follow);
+		}
 	}
 	#endregion
 }

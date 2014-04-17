@@ -79,6 +79,7 @@ public class CollectionBoxScript : MonoBehaviour {
 	/// </summary>
 	void OnTriggerEnter (Collider col) {
 		if (col.tag == "Player") {
+			col.GetComponent<BDAutoMove>().setDirectCameraFollow(false);
 			Vector3 colPosition = col.transform.position;
 			float distanceFromFirst = Vector3.Distance(colPosition, firstCoin);
 			float distanceFromlast = Vector3.Distance(colPosition, lastCoin);
@@ -122,6 +123,7 @@ public class CollectionBoxScript : MonoBehaviour {
 			generateCoins();
 			Vector3 nextDestination = col.GetComponent<BDAutoMove>().getSavedDest();
 			col.transform.LookAt(nextDestination);
+			col.GetComponent<BDAutoMove>().setDirectCameraFollow(true);
 		}
 	}
 	

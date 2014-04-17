@@ -11,6 +11,7 @@ public class BDAutoMove : MonoBehaviour {
 	#region private variables
 	private float currentSpeed = 0.0f;
 	private Vector3 savedDestination;
+	private bool directCameraFollow = true;
 	#endregion
 	
 	/// <summary>
@@ -34,6 +35,19 @@ public class BDAutoMove : MonoBehaviour {
 	public void stopMoving() {
 		Debug.Log("StopMoving Called!");
 		currentSpeed = 0.0f;
+	}
+	
+	/// <summary>
+	/// Toggles the direct camera follow on or off
+	/// When on, camera will point in the same direction as the player character
+	/// When off, camera will stay fixed in same direction, but stay close to the player character
+	/// </summary>
+	public void setDirectCameraFollow (bool stateIn) {
+		directCameraFollow = stateIn;	
+	}
+	
+	public bool getDirectCameraFollow () {
+		return directCameraFollow;
 	}
 	
 	public void setLastBCVisited(string nameIn) {
