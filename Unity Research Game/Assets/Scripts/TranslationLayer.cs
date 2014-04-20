@@ -576,7 +576,7 @@ public class TranslationLayer : MonoBehaviour {
 				feedbackText1.text = "Ready for next Pose!";
 		
           		//Re-starts game clock
-				countdownTimer.SetStartTime(gestureHoldLength);
+				countdownTimer.ResetTimer();
             	countdownTimer.StartCountdown();
 			}
 		}

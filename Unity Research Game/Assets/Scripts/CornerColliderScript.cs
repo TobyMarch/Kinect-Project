@@ -8,9 +8,12 @@ public class CornerColliderScript : MonoBehaviour {
 	public string intermediateObjectName = "Intermediate";
 	#endregion
 	
+	#region GameObject References
 	public GameObject pointerA;
 	public GameObject pointerB;
 	public GameObject pointerC;
+	public GameObject treasureChestPrefab;
+	#endregion
 	
 	//Private array to store non-null pointers to adjacent box colliders
 	private GameObject[] pointers = new GameObject[3];
@@ -21,6 +24,13 @@ public class CornerColliderScript : MonoBehaviour {
 	private Vector3[] nextPosition = new Vector3[3];
 	private int numPositions = -1;
 	private int randomSelect;
+	
+	/// <summary>
+	/// Generates a treasure chest in the path of the player, as a potential reward for mastering the next pose
+	/// </summary>
+	void GenerateTreasureChest () {
+		
+	}
 	
 	// Called when a trigger zone first detects a gameObject with a RigidBody within its bounds
 	void OnTriggerEnter (Collider col) {

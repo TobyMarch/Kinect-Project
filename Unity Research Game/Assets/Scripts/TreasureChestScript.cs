@@ -1,16 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class CoinScript : MonoBehaviour {
-	
+public class NewBehaviourScript : MonoBehaviour {
 	#region GameObject Names
 	public static string PlayerCharacterName = "Third Person PC";
 	#endregion
-	
-	public float rotationAmount = 2.0f;
-	MeshRenderer myRenderer;
+	#region GameObject References
 	private GameObject playerCharacter;
-	
+	private MeshRenderer myRenderer;
+	#endregion
 	
 	void vanish () {
 		//GetComponent<MeshRenderer>().enabled = false;
@@ -22,15 +20,13 @@ public class CoinScript : MonoBehaviour {
 	void OnTriggerEnter (Collider col) {
 		vanish();	
 	}
-	
 	// Use this for initialization
 	void Start () {
-		myRenderer = GetComponent<MeshRenderer>();
-		playerCharacter = GameObject.Find(PlayerCharacterName);
+	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Rotate(0,rotationAmount,0);
+	
 	}
 }
