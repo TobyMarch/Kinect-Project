@@ -36,7 +36,7 @@ public class CornerColliderScript : MonoBehaviour {
 	void OnTriggerEnter (Collider col) {
 		if (col.tag == "Player") {
 			//Debug.Log("Entering " + gameObject.name);
-			string lastVisited = col.GetComponent<BDAutoMove>().lastBCVisited;
+			string lastVisited = col.GetComponent<BDAutoMove>().getLastBCVisited();
 			//Debug.Log("Last Visited:" + lastVisited);
 			
 			numPositions = -1;
@@ -63,10 +63,12 @@ public class CornerColliderScript : MonoBehaviour {
 			//As Player Character approaches center of the trigger zone, redirect it to the newly-selected point
 			if (distanceFromCenter < 1.0f) {
 				col.GetComponent<Transform>().LookAt(nextPosition[randomSelect]);
-				Debug.Log("HEY LOOK A DEBUG MESSAGE");
+				//Debug.Log("HEY LOOK A DEBUG MESSAGE");
 				col.GetComponent<BDAutoMove>().setSavedDest(nextPosition[randomSelect]);
+				//Debug.Log("Sending next position: " + nextPosition[randomSelect]);
+				//col.GetComponent<BDAutoMove>().calculateCurrentSpeed(nextPosition[randomSelect]);
 			}
-			
+			//Debug checks to make sure that the collider knows where to send the player
 			Debug.DrawLine(transform.position, pointerA.transform.position, Color.green);
 			Debug.DrawLine(transform.position, pointerB.transform.position, Color.red);
 			Debug.DrawLine(transform.position, pointerC.transform.position, Color.cyan);
@@ -83,6 +85,8 @@ public class CornerColliderScript : MonoBehaviour {
 			//GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().ListenForNextWholeBodyGesture();
 			//Call to BDGameScript
 			col.GetComponent<BDGameScript>().triggerNextPose();
+			Debug.Log("Sending next position: " + nextPosition[randomSelect]);
+			col.GetComponent<BDAutoMove>().calculateCurrentSpeed(nextPosition[randomSelect]);
 			
 		}
 		

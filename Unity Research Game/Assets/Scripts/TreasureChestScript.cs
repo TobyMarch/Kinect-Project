@@ -14,7 +14,7 @@ public class NewBehaviourScript : MonoBehaviour {
 		//GetComponent<MeshRenderer>().enabled = false;
 		myRenderer.enabled = false;
 		Destroy(gameObject);
-		playerCharacter.GetComponent<BDGameScript>().coinCollected();
+		playerCharacter.GetComponent<BDGameScript>().chestCollected();
 	}
 	
 	void OnTriggerEnter (Collider col) {
@@ -22,7 +22,8 @@ public class NewBehaviourScript : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-	
+		myRenderer = GetComponent<MeshRenderer>();
+		playerCharacter = GameObject.Find(PlayerCharacterName);
 	}
 	
 	// Update is called once per frame

@@ -35,13 +35,26 @@ public class BDGameScript : MonoBehaviour {
 	/// </summary>
 	private int playerScore;
 	#endregion
+	#region Public Variables
+	public int coinValue = 1;
+	public int chestValue = 10;
+	#endregion
 	
 	#region Score Functions
 	/// <summary>
 	/// Called whenever the player character picks up a coin. Called by CoinScript
 	/// </summary>
 	public void coinCollected () {
-		playerScore++;	
+		playerScore += coinValue;	
+	}
+	
+	public void chestCollected () {
+		playerScore += chestValue;	
+	}
+	
+	void updateScore () {
+		//Consistently update the score counter
+		coinCounter.text = "Score: " + playerScore.ToString();
 	}
 	#endregion
 	
@@ -84,7 +97,6 @@ public class BDGameScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//Consistently update the score counter
-		coinCounter.text = playerScore.ToString();
+		updateScore();
 	}
 }
