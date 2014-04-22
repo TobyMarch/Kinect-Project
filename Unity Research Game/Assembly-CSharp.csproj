@@ -44,6 +44,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ActionHeroMotionPack\RootMotionCharacterControlACTION.cs" />
+     <Compile Include="Assets\ActionHeroMotionPack\RootMotionComputer.cs" />
      <Compile Include="Assets\Scripts\BDAutoMove.cs" />
      <Compile Include="Assets\Scripts\BDGameScript.cs" />
      <Compile Include="Assets\Scripts\ButtonScript.cs" />

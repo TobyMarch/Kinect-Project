@@ -45,13 +45,14 @@ public class CollectionBoxScript : MonoBehaviour {
 		float newOffset = Random.Range(-1,2) * coinXOffset;
 		for (int i = 0; i < numCoins; i++) {
 			//Instantiate new coins
-			GameObject newCoin = Instantiate(coinPrefab, new Vector3(parentXPos,parentYPos,parentZPos), Quaternion.identity) as GameObject;
+			GameObject newCoin = Instantiate(coinPrefab, new Vector3(parentXPos,parentYPos,parentZPos), Quaternion.Euler(0,0,0)) as GameObject;
 			//Set coins as children on the box collider, in line with the box's z-axis
 			newCoin.transform.parent = transform;
 			//Each coin is positioned relative to the axes of the collision box
 			newCoin.transform.position -= transform.forward * instStartPoint;
 			newCoin.transform.position += transform.forward * (i * coinZSpacing);
 			newCoin.transform.position += transform.right * newOffset;
+			//newCoin.transform.Rotate(90,0,0);
 			coinList.Add(newCoin);
 			
 			//Save the positions of the first and last coins

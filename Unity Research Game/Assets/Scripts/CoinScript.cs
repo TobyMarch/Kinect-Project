@@ -27,6 +27,7 @@ public class CoinScript : MonoBehaviour {
 	void Start () {
 		myRenderer = GetComponent<MeshRenderer>();
 		playerCharacter = GameObject.Find(PlayerCharacterName);
+		//transform.Rotate(0,0,0);
 	}
 	
 	// Update is called once per frame
