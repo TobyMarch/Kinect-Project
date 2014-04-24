@@ -35,7 +35,7 @@ public class BDAutoMove : MonoBehaviour {
 	/// Used by other scripts to start the player character moving
 	/// </summary>
 	public void startMoving () {
-		Debug.Log("startMoving Called!");
+		//Debug.Log("startMoving Called!");
 		currentSpeed = moveSpeed;
 	}
 	
@@ -43,7 +43,7 @@ public class BDAutoMove : MonoBehaviour {
 	/// Stops the player character
 	/// </summary>
 	public void stopMoving() {
-		Debug.Log("StopMoving Called!");
+		//Debug.Log("StopMoving Called!");
 		currentSpeed = 0.0f;
 	}
 	
@@ -52,14 +52,14 @@ public class BDAutoMove : MonoBehaviour {
 	/// </summary>
 	public void calculateCurrentSpeed (Vector3 transformIn) {
 		//Calculates float value of distance between passed transform and own transform
-		Debug.Log("Position received: " + transformIn);
+		//Debug.Log("Position received: " + transformIn);
 		float distance = Vector3.Distance(transformIn,transform.position);
-		Debug.Log("Distance calculated: " + distance);
+		//Debug.Log("Distance calculated: " + distance);
 		
 		int remainingTime = intermediateObject.GetComponent<TranslationLayer>().countdownTimer.GetRemainingTime();
 		
 		currentSpeed = distance/remainingTime;
-		Debug.Log("Speed calculated: " + currentSpeed);
+		//Debug.Log("Speed calculated: " + currentSpeed);
 	}
 	#endregion
 	

@@ -29,7 +29,7 @@ public class CornerColliderScript : MonoBehaviour {
 	/// Generates a treasure chest in the path of the player, as a potential reward for mastering the next pose
 	/// </summary>
 	void GenerateTreasureChest () {
-		
+		//Instantiate(treasureChestPrefab, new Vector3(parentXPos,parentYPos,parentZPos), Quaternion.identity);
 	}
 	
 	// Called when a trigger zone first detects a gameObject with a RigidBody within its bounds
@@ -49,9 +49,9 @@ public class CornerColliderScript : MonoBehaviour {
 					nextPosition[++numPositions] = newPosition;
 				}
 			}
-			//use standard C# random random object to select next node, from 0 [inclusive] to number of known positions + 1 [exclusive]
+			//use standard C# random object to select next node, from 0 [inclusive] to number of known positions + 1 [exclusive]
 			randomSelect = rand.Next(0,numPositions+1);
-			//Debug.Log("option chosen: " + randomSelect);
+			Debug.Log("option chosen: " + randomSelect);
 		}
 	}
 	
@@ -63,7 +63,6 @@ public class CornerColliderScript : MonoBehaviour {
 			//As Player Character approaches center of the trigger zone, redirect it to the newly-selected point
 			if (distanceFromCenter < 1.0f) {
 				col.GetComponent<Transform>().LookAt(nextPosition[randomSelect]);
-				//Debug.Log("HEY LOOK A DEBUG MESSAGE");
 				col.GetComponent<BDAutoMove>().setSavedDest(nextPosition[randomSelect]);
 				//Debug.Log("Sending next position: " + nextPosition[randomSelect]);
 				//col.GetComponent<BDAutoMove>().calculateCurrentSpeed(nextPosition[randomSelect]);
@@ -85,9 +84,13 @@ public class CornerColliderScript : MonoBehaviour {
 			//GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().ListenForNextWholeBodyGesture();
 			//Call to BDGameScript
 			col.GetComponent<BDGameScript>().triggerNextPose();
-			Debug.Log("Sending next position: " + nextPosition[randomSelect]);
-			col.GetComponent<BDAutoMove>().calculateCurrentSpeed(nextPosition[randomSelect]);
-			
+			//Debug.Log("Sending next position: " + nextPosition[randomSelect]);
+			Vector3 origin = gameObject.transform.position;
+			Vector3 dest = nextPosition[randomSelect];
+			float chestFloat = 0.8f;
+			Vector3 P = Vector3.Lerp(origin, dest, chestFloat);
+			col.GetComponent<BDAutoMove>().calculateCurrentSpeed(P);
+			Instantiate(treasureChestPrefab, P, col.transform.rotation);
 		}
 		
 	}

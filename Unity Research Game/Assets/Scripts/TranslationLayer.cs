@@ -602,7 +602,7 @@ public class TranslationLayer : MonoBehaviour {
 
             //make listening=true
             listeningForWholeBodyGesture = true;
-			feedbackText1.text = "LFWBG turned on in START";
+			//feedbackText1.text = "LFWBG turned on in START";
 		
             isCheckingForExercise = true;
 

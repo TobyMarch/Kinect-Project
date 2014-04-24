@@ -1,20 +1,17 @@
 using UnityEngine;
 using System.Collections;
 
-public class NewBehaviourScript : MonoBehaviour {
+public class TreasureChestScript : MonoBehaviour {
 	#region GameObject Names
 	public static string PlayerCharacterName = "Third Person PC";
 	#endregion
 	#region GameObject References
 	private GameObject playerCharacter;
-	private MeshRenderer myRenderer;
 	#endregion
 	
 	void vanish () {
-		//GetComponent<MeshRenderer>().enabled = false;
-		myRenderer.enabled = false;
-		Destroy(gameObject);
 		playerCharacter.GetComponent<BDGameScript>().chestCollected();
+		Destroy(gameObject);
 	}
 	
 	void OnTriggerEnter (Collider col) {
@@ -22,7 +19,6 @@ public class NewBehaviourScript : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		myRenderer = GetComponent<MeshRenderer>();
 		playerCharacter = GameObject.Find(PlayerCharacterName);
 	}
 	

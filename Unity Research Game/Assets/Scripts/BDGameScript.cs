@@ -29,6 +29,10 @@ public class BDGameScript : MonoBehaviour {
 	/// Bool value used to ensure that the game only calls LFNBG() while game is actually in session
 	/// </summary>
 	private bool continueGame;
+	/// <summary>
+	/// Bool value set true IFF the player holds the current exercise pose
+	/// </summary>
+	private bool heldCurrentPose;
 	
 	/// <summary>
 	/// Int value holding the player's current score
@@ -59,14 +63,7 @@ public class BDGameScript : MonoBehaviour {
 	#endregion
 	
 	#region Gameplay and Pose-Related Functions
-	/// <summary>
-	/// Starts the game. Called by WholeBodyListenButtonPressed() in ButtonScript
-	/// </summary>
-	public void startGame() {
-		//GameObject.Find(PlayerCharacterName).GetComponent<BDAutoMove>().startMoving();
-		playerCharacter.GetComponent<BDAutoMove>().startMoving();
-		continueGame = true;
-	}
+	
 	/// <summary>
 	/// Triggers the translation layer to display the next pose and begin listening for user movement
 	/// </summary>
@@ -76,6 +73,14 @@ public class BDGameScript : MonoBehaviour {
 			//GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().ListenForNextWholeBodyGesture();
 			intermediateObject.GetComponent<TranslationLayer>().ListenForNextWholeBodyGesture();
 		}
+	}
+	/// <summary>
+	/// Starts the game. Called by WholeBodyListenButtonPressed() in ButtonScript
+	/// </summary>
+	public void startGame() {
+		//GameObject.Find(PlayerCharacterName).GetComponent<BDAutoMove>().startMoving();
+		playerCharacter.GetComponent<BDAutoMove>().startMoving();
+		continueGame = true;
 	}
 	/// <summary>
 	/// Ends the game. Called in TranslationLayer once the system has reached the end of the pose list
