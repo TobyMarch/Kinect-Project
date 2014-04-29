@@ -122,22 +122,28 @@ public class CollectionBoxScript : MonoBehaviour {
 			inLine = false;
 			destroyCoins();
 			generateCoins();
-			Vector3 nextDestination = col.GetComponent<BDAutoMove>().getSavedDest();
+			Vector3 nextDestination = col.GetComponent<BDAutoMove>().GetNextChestPosition();
 			col.transform.LookAt(nextDestination);
 			col.GetComponent<BDAutoMove>().setDirectCameraFollow(true);
 		}
 	}
 	
+	void Awake () {
+		parentXPos = transform.position.x;
+		parentYPos = transform.position.y;
+		parentZPos = transform.position.z;
+		generateCoins();
+	}
+	
 	// Use this for initialization
-	void Start () {
+	/*void Start () {
 		//coin = Resources.Load("coinPrefab") as GameObject;
 		//Debug.Log("CCZ Position: "+transform.position.x+"," + transform.position.y + ", " + transform.position.z);
 		parentXPos = transform.position.x;
 		parentYPos = transform.position.y;
 		parentZPos = transform.position.z;
 		generateCoins();
-		
-	}
+	}*/
 	
 	// Update is called once per frame
 	void Update () {

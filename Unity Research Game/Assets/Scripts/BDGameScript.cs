@@ -69,7 +69,7 @@ public class BDGameScript : MonoBehaviour {
 	/// </summary>
 	public void triggerNextPose() {
 		if (continueGame) {
-			Debug.Log("Calling next pose from BDGS");
+			//Debug.Log("Calling next pose from BDGS");
 			//GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().ListenForNextWholeBodyGesture();
 			intermediateObject.GetComponent<TranslationLayer>().ListenForNextWholeBodyGesture();
 		}
@@ -91,14 +91,19 @@ public class BDGameScript : MonoBehaviour {
 		playerCharacter.GetComponent<BDAutoMove>().stopMoving();
 	}
 	#endregion
-	
-	// Use this for initialization
-	// GameObject pointers should be initialized here, rather than repeatedly using find() 
-	void Start () {
+	void Awake () {
 		intermediateObject = GameObject.Find(intermediateObjectName);
 		playerCharacter = GameObject.Find(PlayerCharacterName);
 		playerScore = 0;
 	}
+	
+	// Use this for initialization
+	// GameObject pointers should be initialized here, rather than repeatedly using find() 
+	/*void Start () {
+		intermediateObject = GameObject.Find(intermediateObjectName);
+		playerCharacter = GameObject.Find(PlayerCharacterName);
+		playerScore = 0;
+	}*/
 	
 	// Update is called once per frame
 	void Update () {

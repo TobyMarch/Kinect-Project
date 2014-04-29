@@ -19,11 +19,14 @@ public class CoinScript : MonoBehaviour {
 	void OnTriggerEnter (Collider col) {
 		vanish();	
 	}
-	
-	// Use this for initialization
-	void Start () {
+	void Awake () {
 		playerCharacter = GameObject.Find(PlayerCharacterName);
 	}
+	
+	// Use this for initialization
+	/*void Start () {
+		playerCharacter = GameObject.Find(PlayerCharacterName);
+	}*/
 	
 	// Update is called once per frame
 	void Update () {

@@ -1,14 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CornerColliderScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TreasureChestScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\CornerColliderScript.cs" Line="92" Column="58" />
-      <File FileName="Assets\Scripts\TranslationLayer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CoinScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CollectionBoxScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BDAutoMove.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BDGameScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\TreasureChestScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CornerColliderScript.cs" Line="113" Column="70" />
+      <File FileName="Assets\Scripts\TranslationLayer.cs" Line="799" Column="17" />
+      <File FileName="Assets\Scripts\CoinScript.cs" Line="27" Column="4" />
+      <File FileName="Assets\Scripts\CollectionBoxScript.cs" Line="125" Column="73" />
+      <File FileName="Assets\Scripts\BDAutoMove.cs" Line="105" Column="19" />
+      <File FileName="Assets\Scripts\BDGameScript.cs" Line="97" Column="19" />
+      <File FileName="Assets\Scripts\TreasureChestScript.cs" Line="31" Column="76" />
       <File FileName="Assets\Scripts\mySimpleTimer.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ThirdPersonCamera.cs" Line="1" Column="1" />
     </Files>

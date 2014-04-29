@@ -15,6 +15,12 @@ public class CornerColliderScript : MonoBehaviour {
 	public GameObject treasureChestPrefab;
 	#endregion
 	
+	#region Public Variables
+	public float chestOffset = 0.8f;
+	#endregion
+	
+	//Private reference to an instance of TreasureChestPrefab
+	private GameObject currentTreasureChest;
 	//Private array to store non-null pointers to adjacent box colliders
 	private GameObject[] pointers = new GameObject[3];
 	private int numPointers = -1;
@@ -28,18 +34,30 @@ public class CornerColliderScript : MonoBehaviour {
 	/// <summary>
 	/// Generates a treasure chest in the path of the player, as a potential reward for mastering the next pose
 	/// </summary>
-	void GenerateTreasureChest () {
-		//Instantiate(treasureChestPrefab, new Vector3(parentXPos,parentYPos,parentZPos), Quaternion.identity);
+	void GenerateTreasureChest (Vector3 positionIn, Quaternion rotationIn) {
+		currentTreasureChest = Instantiate(treasureChestPrefab, positionIn, rotationIn) as GameObject;
+	}
+	
+	/// <summary>
+	/// Destroys the treasure chest once the user is past it
+	/// </summary>
+	public void DestroyTreasureChest () {
+		Destroy(currentTreasureChest);
 	}
 	
 	// Called when a trigger zone first detects a gameObject with a RigidBody within its bounds
 	void OnTriggerEnter (Collider col) {
 		if (col.tag == "Player") {
-			//Debug.Log("Entering " + gameObject.name);
-			string lastVisited = col.GetComponent<BDAutoMove>().getLastBCVisited();
-			//Debug.Log("Last Visited:" + lastVisited);
-			
 			numPositions = -1;
+			//Debug.Log("Entering " + gameObject.name);
+			string lastVisited = col.GetComponent<BDAutoMove>().GetLastBCVisited();
+			//Debug.Log("Last Visited:" + lastVisited);
+		
+			if (lastVisited != null) {
+				GameObject.Find(lastVisited).GetComponent<CornerColliderScript>().DestroyTreasureChest();
+			}
+			
+			
 			//Loop through valid pointers to adjacent box colliders
 			foreach (GameObject pointer in pointers) {
 				//To avoid backtracking, only find positions of BCs the player hasn't just visited
@@ -63,7 +81,7 @@ public class CornerColliderScript : MonoBehaviour {
 			//As Player Character approaches center of the trigger zone, redirect it to the newly-selected point
 			if (distanceFromCenter < 1.0f) {
 				col.GetComponent<Transform>().LookAt(nextPosition[randomSelect]);
-				col.GetComponent<BDAutoMove>().setSavedDest(nextPosition[randomSelect]);
+				col.GetComponent<BDAutoMove>().SetNextCornerPosition(nextPosition[randomSelect]);
 				//Debug.Log("Sending next position: " + nextPosition[randomSelect]);
 				//col.GetComponent<BDAutoMove>().calculateCurrentSpeed(nextPosition[randomSelect]);
 			}
@@ -79,7 +97,7 @@ public class CornerColliderScript : MonoBehaviour {
 		if (col.tag == "Player") {
 			//Debug.Log("Exiting " + gameObject.name);
 			//col.SendMessage("setLastBCVisited",gameObject.name);
-			col.GetComponent<BDAutoMove>().setLastBCVisited(gameObject.name);
+			col.GetComponent<BDAutoMove>().SetLastBCVisited(gameObject.name);
 			//Call directly to the translation layer (will be replaced)
 			//GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().ListenForNextWholeBodyGesture();
 			//Call to BDGameScript
@@ -87,10 +105,12 @@ public class CornerColliderScript : MonoBehaviour {
 			//Debug.Log("Sending next position: " + nextPosition[randomSelect]);
 			Vector3 origin = gameObject.transform.position;
 			Vector3 dest = nextPosition[randomSelect];
-			float chestFloat = 0.8f;
-			Vector3 P = Vector3.Lerp(origin, dest, chestFloat);
-			col.GetComponent<BDAutoMove>().calculateCurrentSpeed(P);
-			Instantiate(treasureChestPrefab, P, col.transform.rotation);
+			//float chestFloat = 0.8f;
+			Vector3 offsetPosition = Vector3.Lerp(origin, dest, chestOffset);
+			col.GetComponent<BDAutoMove>().calculateCurrentSpeed(offsetPosition);
+			//GameObject newChest = Instantiate(treasureChestPrefab, offsetPosition, col.transform.rotation) as GameObject;
+			GenerateTreasureChest(offsetPosition, col.transform.rotation);
+			col.GetComponent<BDAutoMove>().SetNextChestPosition(offsetPosition);
 		}
 		
 	}
@@ -103,7 +123,7 @@ public class CornerColliderScript : MonoBehaviour {
 			pointers[++numPointers] = pointerA;
 		}
 		if (pointerB != null) {
-			//Debug.Log("Right Box found.");
+			//Debug.Log("Center Box found.");
 			//Vector3 centerB = pointerB.transform.position;
 			//nextPosition[++numPointers] = centerB;
 			pointers[++numPointers] = pointerB;

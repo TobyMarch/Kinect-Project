@@ -17,13 +17,17 @@ public class TreasureChestScript : MonoBehaviour {
 	void OnTriggerEnter (Collider col) {
 		vanish();	
 	}
-	// Use this for initialization
-	void Start () {
+	
+	void Awake () {
 		playerCharacter = GameObject.Find(PlayerCharacterName);
 	}
+	// Use this for initialization
+	/*void Start () {
+		playerCharacter = GameObject.Find(PlayerCharacterName);
+	}*/
 	
 	// Update is called once per frame
 	void Update () {
-	
+		//Add in some scripting to make the chest move, to catch the player's eye
 	}
 }

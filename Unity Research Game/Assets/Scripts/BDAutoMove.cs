@@ -17,7 +17,8 @@ public class BDAutoMove : MonoBehaviour {
 	
 	#region private variables
 	private float currentSpeed = 0.0f;
-	private Vector3 savedDestination;
+	private Vector3 nextCornerPosition;
+	private Vector3	nextChestPosition;
 	private string lastBCVisited;
 	private bool directCameraFollow = true;
 	
@@ -79,27 +80,40 @@ public class BDAutoMove : MonoBehaviour {
 	#endregion
 	
 	#region Object Reference functions
-	public void setLastBCVisited(string nameIn) {
+	public void SetLastBCVisited(string nameIn) {
 			lastBCVisited = nameIn;
 	}
 	
-	public string getLastBCVisited () {
+	public string GetLastBCVisited () {
 		return lastBCVisited;
 	}
 	
-	public void setSavedDest (Vector3 destIn) {
+	public void SetNextCornerPosition (Vector3 destIn) {
 		//Debug.Log("SavedDest called!");
-		savedDestination = destIn;
+		nextCornerPosition = destIn;
 	}
 	
-	public Vector3 getSavedDest () {
-		return savedDestination;
+	public Vector3 GetNextCornerPosition () {
+		return nextCornerPosition;
+	}
+	public void SetNextChestPosition (Vector3 destIn) {
+		//Debug.Log("SavedDest called!");
+		nextChestPosition = destIn;
+	}
+	
+	public Vector3 GetNextChestPosition () {
+		return nextChestPosition;
 	}
 	#endregion
+	void Awake () {
+		//Establish a reference to the game timer
+		intermediateObject = GameObject.Find(intermediateObjectName);
+	}
+	
 	// Use this for initialization
 	void Start () {
 		//Establish a reference to the game timer
-		intermediateObject = GameObject.Find(intermediateObjectName);
+		//intermediateObject = GameObject.Find(intermediateObjectName);
 		//startMoving();
 	}
 	

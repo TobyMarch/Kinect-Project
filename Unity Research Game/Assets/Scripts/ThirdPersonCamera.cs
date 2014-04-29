@@ -44,14 +44,17 @@ public class ThirdPersonCamera : MonoBehaviour {
 	#region Unity event functions
 	
 	
-	
-	// Use this for initialization
-	void Start () {
+	void Awake () {
 		follow = GameObject.FindWithTag("Player").transform;
+		thirdPersonCharacter = GameObject.Find("Third Person PC");
+	}
+	// Use this for initialization
+	/*void Start () {
+		//follow = GameObject.FindWithTag("Player").transform;
 		thirdPersonCharacter = GameObject.Find("Third Person PC");
 		Debug.Log("TPC: " + thirdPersonCharacter.name);
 		//follow = thirdPersonCharacter.transform;
-	}
+	}*/
 	
 	// Update is called once per frame
 	void Update () {

@@ -796,15 +796,17 @@ public class TranslationLayer : MonoBehaviour {
 
                 //StartAnimatingIndicatorModel();
 				
-				//New Code - experimenting with event-driven LFWBG
+				//New Code - event-driven LFWBG
 				listeningForWholeBodyGesture = false;
 				Debug.Log("LFWBG switched off in GHE()");
 				StopAnimatingIndicatorModel();
+				//Stops countdown, ensures that system does not queue up two poses between triggers
+				countdownTimer.StopCountdown();
 			
 				//New code to make the timer only reset when the system is listening for gestures (event-driven)
-				if (listeningForWholeBodyGesture) {
+				/*if (listeningForWholeBodyGesture) {
                 	countdownTimer.ResetTimer();//reset timer
-				}
+				}*/
 				//Test code to see if system can be continued via method call to ListenForNextWholeBodyGesture()
 				//ListenForNextWholeBodyGesture();
             }
