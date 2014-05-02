@@ -58,8 +58,8 @@
      <Compile Include="Assets\Scripts\SoundScript.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonCamera.cs" />
      <Compile Include="Assets\Scripts\TranslationLayer.cs" />
+     <Compile Include="Assets\Scripts\TreasureChestCollectionBoxScript.cs" />
      <Compile Include="Assets\Scripts\TreasureChestScript.cs" />
-     <Compile Include="Assets\Scripts\TriggerBoxScript.cs" />
      <Compile Include="Assets\Scripts\anchorScript.cs" />
      <Compile Include="Assets\Scripts\balanceGUIScript.cs" />
      <Compile Include="Assets\Scripts\gameCameraScript.cs" />

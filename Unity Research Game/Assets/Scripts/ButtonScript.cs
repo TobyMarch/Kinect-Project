@@ -161,7 +161,7 @@ public class ButtonScript : MonoBehaviour {
 		//GameObject.Find(mainCameraObjectName).GetComponent<gameCameraScript>().resetProgression();
 		Debug.Log("Button Pressed!");
 		//GameObject.Find("Third Person PC").GetComponent<BDAutoMove>().startMoving();
-		GameObject.Find("Third Person PC").GetComponent<BDGameScript>().startGame();
+		GameObject.Find("Third Person PC").GetComponent<BDGameScript>().StartGame();
     }
 
     #endregion

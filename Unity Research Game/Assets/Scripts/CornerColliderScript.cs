@@ -80,7 +80,8 @@ public class CornerColliderScript : MonoBehaviour {
 			//Debug.Log("Distance from center: " + distanceFromCenter);
 			//As Player Character approaches center of the trigger zone, redirect it to the newly-selected point
 			if (distanceFromCenter < 1.0f) {
-				col.GetComponent<Transform>().LookAt(nextPosition[randomSelect]);
+				//col.GetComponent<Transform>().LookAt(nextPosition[randomSelect]);
+				col.transform.LookAt(nextPosition[randomSelect]);
 				col.GetComponent<BDAutoMove>().SetNextCornerPosition(nextPosition[randomSelect]);
 				//Debug.Log("Sending next position: " + nextPosition[randomSelect]);
 				//col.GetComponent<BDAutoMove>().calculateCurrentSpeed(nextPosition[randomSelect]);
@@ -101,7 +102,7 @@ public class CornerColliderScript : MonoBehaviour {
 			//Call directly to the translation layer (will be replaced)
 			//GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().ListenForNextWholeBodyGesture();
 			//Call to BDGameScript
-			col.GetComponent<BDGameScript>().triggerNextPose();
+			col.GetComponent<BDGameScript>().TriggerNextPose();
 			//Debug.Log("Sending next position: " + nextPosition[randomSelect]);
 			Vector3 origin = gameObject.transform.position;
 			Vector3 dest = nextPosition[randomSelect];

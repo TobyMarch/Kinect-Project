@@ -10,7 +10,7 @@ public class TreasureChestScript : MonoBehaviour {
 	#endregion
 	
 	void vanish () {
-		playerCharacter.GetComponent<BDGameScript>().chestCollected();
+		playerCharacter.GetComponent<BDGameScript>().ChestCollected();
 		Destroy(gameObject);
 	}
 	

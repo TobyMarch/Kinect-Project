@@ -32,7 +32,9 @@ public class BDGameScript : MonoBehaviour {
 	/// <summary>
 	/// Bool value set true IFF the player holds the current exercise pose
 	/// </summary>
-	private bool heldCurrentPose;
+	private bool poseComplete;
+	
+	
 	
 	/// <summary>
 	/// Int value holding the player's current score
@@ -48,26 +50,25 @@ public class BDGameScript : MonoBehaviour {
 	/// <summary>
 	/// Called whenever the player character picks up a coin. Called by CoinScript
 	/// </summary>
-	public void coinCollected () {
+	public void CoinCollected () {
 		playerScore += coinValue;	
 	}
 	
-	public void chestCollected () {
+	public void ChestCollected () {
 		playerScore += chestValue;	
 	}
 	
-	void updateScore () {
+	void UpdateScore () {
 		//Consistently update the score counter
 		coinCounter.text = "Score: " + playerScore.ToString();
 	}
 	#endregion
 	
 	#region Gameplay and Pose-Related Functions
-	
 	/// <summary>
 	/// Triggers the translation layer to display the next pose and begin listening for user movement
 	/// </summary>
-	public void triggerNextPose() {
+	public void TriggerNextPose() {
 		if (continueGame) {
 			//Debug.Log("Calling next pose from BDGS");
 			//GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().ListenForNextWholeBodyGesture();
@@ -75,9 +76,29 @@ public class BDGameScript : MonoBehaviour {
 		}
 	}
 	/// <summary>
+	/// Checks the 'poseComplete' flag
+	/// </summary>
+	/// <returns>
+	/// True if the user has met the current pose within the time limit, else False
+	/// </returns>
+	public bool GetPoseCompletion () {
+		//return poseComplete;
+		return intermediateObject.GetComponent<TranslationLayer>().heldCurrentPose;
+	}
+	
+	/// <summary>
+	/// Sets the poseComplete flag.
+	/// </summary>
+	/// <param name='poseCompletionIn'>
+	/// Pose completion in.
+	/// </param>
+	public void SetPoseCompletion (bool poseCompletionIn) {
+		poseComplete = poseCompletionIn;
+	}
+	/// <summary>
 	/// Starts the game. Called by WholeBodyListenButtonPressed() in ButtonScript
 	/// </summary>
-	public void startGame() {
+	public void StartGame () {
 		//GameObject.Find(PlayerCharacterName).GetComponent<BDAutoMove>().startMoving();
 		playerCharacter.GetComponent<BDAutoMove>().startMoving();
 		continueGame = true;
@@ -85,7 +106,7 @@ public class BDGameScript : MonoBehaviour {
 	/// <summary>
 	/// Ends the game. Called in TranslationLayer once the system has reached the end of the pose list
 	/// </summary>
-	public void endGame() {
+	public void EndGame () {
 		continueGame = false;
 		//GameObject.Find(PlayerCharacterName).GetComponent<BDAutoMove>().stopMoving();
 		playerCharacter.GetComponent<BDAutoMove>().stopMoving();
@@ -107,6 +128,6 @@ public class BDGameScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		updateScore();
+		UpdateScore();
 	}
 }

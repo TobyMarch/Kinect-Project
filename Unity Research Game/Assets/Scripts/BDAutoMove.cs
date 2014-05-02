@@ -62,6 +62,16 @@ public class BDAutoMove : MonoBehaviour {
 		currentSpeed = distance/remainingTime;
 		//Debug.Log("Speed calculated: " + currentSpeed);
 	}
+	
+	/// <summary>
+	/// Changes the rotation of the gameObject to point toward another object.
+	/// </summary>
+	/// <param name='transformIn'>
+	/// Vector3 Transform of new world position to point at.
+	/// </param>
+	public void PointAtNext(Vector3 transformIn) {
+		gameObject.transform.LookAt(transformIn);
+	}
 	#endregion
 	
 	#region Camera Positioning functions

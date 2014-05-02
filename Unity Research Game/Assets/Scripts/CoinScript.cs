@@ -13,7 +13,7 @@ public class CoinScript : MonoBehaviour {
 	
 	void vanish () {
 		Destroy(gameObject);
-		playerCharacter.GetComponent<BDGameScript>().coinCollected();
+		playerCharacter.GetComponent<BDGameScript>().CoinCollected();
 	}
 	
 	void OnTriggerEnter (Collider col) {

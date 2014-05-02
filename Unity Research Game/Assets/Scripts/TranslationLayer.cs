@@ -199,6 +199,12 @@ public class TranslationLayer : MonoBehaviour {
     /// </summary>
     [HideInInspector]
     public bool listeningForWholeBodyGesture = false;
+	
+	/// <summary>
+	/// Flags true if player has held current pose within time limit
+	/// </summary>
+	[HideInInspector]
+	public bool heldCurrentPose = false;
 
 #endregion
 
@@ -574,6 +580,8 @@ public class TranslationLayer : MonoBehaviour {
 				//Brings Indicator Model to correct pose
 				StartAnimatingIndicatorModel();
 				feedbackText1.text = "Ready for next Pose!";
+				//sets flag to false
+				heldCurrentPose = false;
 		
           		//Re-starts game clock
 				countdownTimer.ResetTimer();
@@ -605,7 +613,9 @@ public class TranslationLayer : MonoBehaviour {
 			//feedbackText1.text = "LFWBG turned on in START";
 		
             isCheckingForExercise = true;
-
+		
+			heldCurrentPose = false; //sets flag to false
+		
             exerciseScore = 0; //reset score to 0
 
             if (listeningForWholeBodyGesture){
@@ -783,7 +793,7 @@ public class TranslationLayer : MonoBehaviour {
 
             systemSounds.PlayGestureSuccessSound(); //play the sound
 		
-			
+			heldCurrentPose = true; //set flag true
 
             //advance to next keypoint
             Debug.Log("Gesture Succesful! " + currentKeyPoint + " " + indicatorModelKeyPoint);
@@ -895,7 +905,7 @@ public class TranslationLayer : MonoBehaviour {
 			//GameObject.Find("Main Camera").GetComponent<gameCameraScript>().SceneTransition();
 		
 			//Stop the BDGameScript
-			GameObject.Find("Third Person PC").GetComponent<BDGameScript>().endGame();
+			GameObject.Find("Third Person PC").GetComponent<BDGameScript>().EndGame();
         }
 
         /// <summary>
