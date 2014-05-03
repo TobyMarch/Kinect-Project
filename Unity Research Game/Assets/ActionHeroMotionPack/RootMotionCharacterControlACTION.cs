@@ -91,6 +91,6 @@ public class RootMotionCharacterControlACTION: MonoBehaviour
 		computer.ComputeRootMotion();
 		
 		// move the character using the computer's output
-		character.SimpleMove(transform.TransformDirection(computer.deltaPosition)/Time.deltaTime);
+		//character.SimpleMove(transform.TransformDirection(computer.deltaPosition)/Time.deltaTime);
 	}
 }

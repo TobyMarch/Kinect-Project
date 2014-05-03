@@ -71,7 +71,6 @@ public class ThirdPersonCamera : MonoBehaviour {
 		
 		// making a smooth transition between its current position and the position it wants to be in
 		transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * smooth);
-		
 		// make sure the camera is looking the right way!
 		if (thirdPersonCharacter.GetComponent<BDAutoMove>().getDirectCameraFollow()) {
 			transform.LookAt(follow);
