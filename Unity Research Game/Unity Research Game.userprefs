@@ -1,10 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ActionHeroMotionPack\RootMotionCharacterControlACTION.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BDAutoMove.cs">
     <Files>
+      <File FileName="Assets\Scripts\TreasureChestCollectionBoxScript.cs" Line="16" Column="6" />
       <File FileName="Assets\ActionHeroMotionPack\RootMotionComputer.cs" Line="51" Column="18" />
-      <File FileName="Assets\ActionHeroMotionPack\RootMotionCharacterControlACTION.cs" Line="39" Column="8" />
+      <File FileName="Assets\ActionHeroMotionPack\RootMotionCharacterControlACTION.cs" Line="96" Column="92" />
       <File FileName="Assets\Scripts\ThirdPersonCamera.cs" Line="73" Column="98" />
+      <File FileName="Assets\Scripts\BDAutoMove.cs" Line="21" Column="36" />
+      <File FileName="Assets\Scripts\TreasureChestScript.cs" Line="18" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

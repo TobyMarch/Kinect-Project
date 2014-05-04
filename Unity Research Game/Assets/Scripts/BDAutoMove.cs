@@ -4,10 +4,12 @@ using System.Collections;
 public class BDAutoMove : MonoBehaviour {
 	#region GameObject Reference Names
 	public string intermediateObjectName = "Intermediate";
+	public string characterModelName = "Alexis";
 	#endregion
 	
 	#region GameObject References
 	private GameObject intermediateObject;
+	private GameObject characterModel;
 	#endregion
 	
 	#region public variables
@@ -16,11 +18,13 @@ public class BDAutoMove : MonoBehaviour {
 	#endregion
 	
 	#region private variables
+	private float superSlowSpeed = 5.0f;
 	private float currentSpeed = 0.0f;
 	private Vector3 nextCornerPosition;
 	private Vector3	nextChestPosition;
 	private string lastBCVisited;
 	private bool directCameraFollow = true;
+	
 	
 	#endregion
 	
@@ -37,7 +41,9 @@ public class BDAutoMove : MonoBehaviour {
 	/// </summary>
 	public void startMoving () {
 		//Debug.Log("startMoving Called!");
+		characterModel.GetComponent<RootMotionCharacterControlACTION>().SetMovingAndRunning(true, true);
 		currentSpeed = moveSpeed;
+		
 	}
 	
 	/// <summary>
@@ -45,7 +51,12 @@ public class BDAutoMove : MonoBehaviour {
 	/// </summary>
 	public void stopMoving() {
 		//Debug.Log("StopMoving Called!");
+		characterModel.GetComponent<RootMotionCharacterControlACTION>().SetMovingAndRunning(false, false);
 		currentSpeed = 0.0f;
+	}
+	
+	public void slowMove () {
+		currentSpeed = superSlowSpeed;		
 	}
 	
 	/// <summary>
@@ -118,6 +129,7 @@ public class BDAutoMove : MonoBehaviour {
 	void Awake () {
 		//Establish a reference to the game timer
 		intermediateObject = GameObject.Find(intermediateObjectName);
+		characterModel = GameObject.Find(characterModelName);
 	}
 	
 	// Use this for initialization

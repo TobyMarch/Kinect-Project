@@ -2,14 +2,19 @@ using UnityEngine;
 using System.Collections;
 
 public class TreasureChestCollectionBoxScript : MonoBehaviour {
-	#region GameObject Reference Names
-	
+	#region GameObject Names
+	public static string PlayerCharacterName = "Third Person PC";
+	#endregion
+	#region GameObject References
+	private GameObject playerCharacter;
 	#endregion
 	
 	
-	void OnTriggerEnter () {
-		
-	}
+	void OnTriggerEnter (Collider col) {
+		/*if (col.tag == "Player") {
+			col.GetComponent<BDAutoMove>().slowMove();
+		}*/
+	} 
 	
 	void OnTriggerStay () {
 		
@@ -25,13 +30,14 @@ public class TreasureChestCollectionBoxScript : MonoBehaviour {
 			//Redirect the player character toward the next corner collider
 			Vector3 nextCornerPosition = col.GetComponent<BDAutoMove>().GetNextCornerPosition();
 			col.transform.LookAt(nextCornerPosition);
+			col.GetComponent<BDAutoMove>().startMoving();
 		}
 		
 	}
 	
 	// Use this for initialization
 	void Awake () {
-		
+		playerCharacter = GameObject.Find(PlayerCharacterName);
 	}
 	
 	

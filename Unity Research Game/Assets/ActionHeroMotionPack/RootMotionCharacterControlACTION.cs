@@ -6,9 +6,36 @@ using System.Collections;
 [AddComponentMenu("Mixamo/Demo/Root Motion Character")]
 public class RootMotionCharacterControlACTION: MonoBehaviour
 {
+	#region Public Variables
 	public float turningSpeed = 90f;
 	public RootMotionComputer computer;
 	public CharacterController character;
+	#endregion
+	#region Private Variables
+	private bool isMoving = false;
+	private bool isRunning = false;
+	#endregion
+	
+	/// <summary>
+	/// Sets the flag determining whether the character uses 'run' animations, in lieu of holding 'shift'
+	/// </summary>
+	public void SetRunning (bool runState) {
+		isRunning = runState;
+	}
+	/// <summary>
+	/// Sets the flag determining if character leaves the 'idle' state and starts moving, in lieu of holding 'W'
+	/// </summary>
+	public void SetMoving (bool moveState) {
+		isMoving = moveState;
+	}
+	
+	/// <summary>
+	/// Sets the running and moving flags at once
+	/// </summary>
+	public void SetMovingAndRunning (bool moveState, bool runState) {
+		isMoving = moveState;
+		isRunning = runState;
+	}
 	
 	void Start()
 	{
@@ -60,12 +87,17 @@ public class RootMotionCharacterControlACTION: MonoBehaviour
 			animation["walk"].normalizedTime = 0f;
 			animation["run"].normalizedTime = 0f;
 		}
-		if (Input.GetKey(KeyCode.W))
+		//New Code
+		//if (Input.GetKey(KeyCode.W))
+		if (isMoving)
 		{
 			targetMovementWeight = 1f;
 		}
-		if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) throttle = 1f;
-				
+		//if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) throttle = 1f;
+		if (isRunning) {
+			throttle = 1f;	
+		}
+		
 		// blend in the movement
 
 		animation.Blend("run", targetMovementWeight*throttle, 0.5f);
