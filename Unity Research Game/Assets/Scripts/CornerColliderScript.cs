@@ -50,6 +50,7 @@ public class CornerColliderScript : MonoBehaviour {
 		if (col.tag == "Player") {
 			numPositions = -1;
 			//Debug.Log("Entering " + gameObject.name);
+			//Debug.Log("HEY LOOK it's " + col.name);
 			string lastVisited = col.GetComponent<BDAutoMove>().GetLastBCVisited();
 			//Debug.Log("Last Visited:" + lastVisited);
 		
@@ -108,7 +109,7 @@ public class CornerColliderScript : MonoBehaviour {
 			Vector3 dest = nextPosition[randomSelect];
 			//float chestFloat = 0.8f;
 			Vector3 offsetPosition = Vector3.Lerp(origin, dest, chestOffset);
-			col.GetComponent<BDAutoMove>().calculateCurrentSpeed(offsetPosition);
+			col.GetComponent<BDAutoMove>().CalculateCurrentSpeed(offsetPosition);
 			//GameObject newChest = Instantiate(treasureChestPrefab, offsetPosition, col.transform.rotation) as GameObject;
 			GenerateTreasureChest(offsetPosition, col.transform.rotation);
 			col.GetComponent<BDAutoMove>().SetNextChestPosition(offsetPosition);

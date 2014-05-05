@@ -18,7 +18,7 @@ public class BDAutoMove : MonoBehaviour {
 	#endregion
 	
 	#region private variables
-	private float superSlowSpeed = 5.0f;
+	private float superSlowSpeed = 1.0f;
 	private float currentSpeed = 0.0f;
 	private Vector3 nextCornerPosition;
 	private Vector3	nextChestPosition;
@@ -31,7 +31,7 @@ public class BDAutoMove : MonoBehaviour {
 	/// <summary>
 	///  generic movement function, called every frame
 	/// </summary>
-	void autoMove () {
+	void AutoMove () {
 		transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
 	}
 	
@@ -39,7 +39,7 @@ public class BDAutoMove : MonoBehaviour {
 	/// <summary>
 	/// Used by other scripts to start the player character moving
 	/// </summary>
-	public void startMoving () {
+	public void StartMoving () {
 		//Debug.Log("startMoving Called!");
 		characterModel.GetComponent<RootMotionCharacterControlACTION>().SetMovingAndRunning(true, true);
 		currentSpeed = moveSpeed;
@@ -49,20 +49,21 @@ public class BDAutoMove : MonoBehaviour {
 	/// <summary>
 	/// Stops the player character
 	/// </summary>
-	public void stopMoving() {
+	public void StopMoving() {
 		//Debug.Log("StopMoving Called!");
 		characterModel.GetComponent<RootMotionCharacterControlACTION>().SetMovingAndRunning(false, false);
 		currentSpeed = 0.0f;
 	}
 	
-	public void slowMove () {
+	public void SlowMove () {
+		Debug.Log("SlowMove Called!");
 		currentSpeed = superSlowSpeed;		
 	}
 	
 	/// <summary>
 	/// Calculates the appropriate speed to get the PC to the treasure chest based on distance and time limit
 	/// </summary>
-	public void calculateCurrentSpeed (Vector3 transformIn) {
+	public void CalculateCurrentSpeed (Vector3 transformIn) {
 		//Calculates float value of distance between passed transform and own transform
 		//Debug.Log("Position received: " + transformIn);
 		float distance = Vector3.Distance(transformIn,transform.position);
@@ -141,7 +142,7 @@ public class BDAutoMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		autoMove();
+		AutoMove();
 		//Debug.Log("Current Heading:" + transform.forward);
 	}
 }

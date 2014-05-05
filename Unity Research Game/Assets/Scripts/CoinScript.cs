@@ -17,6 +17,7 @@ public class CoinScript : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter (Collider col) {
+		Debug.Log("Coin" + gameObject.name + " was hit by " + col.name);
 		vanish();	
 	}
 	void Awake () {

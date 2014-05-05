@@ -4,16 +4,22 @@ using System.Collections;
 public class TreasureChestCollectionBoxScript : MonoBehaviour {
 	#region GameObject Names
 	public static string PlayerCharacterName = "Third Person PC";
+	public string characterModelName = "Alexis";
 	#endregion
 	#region GameObject References
 	private GameObject playerCharacter;
+	private GameObject characterModel;
 	#endregion
 	
 	
 	void OnTriggerEnter (Collider col) {
-		/*if (col.tag == "Player") {
-			col.GetComponent<BDAutoMove>().slowMove();
-		}*/
+		if (col.tag == "Player") {
+			Debug.Log(gameObject.name + " was hit by " + col.name);
+			if (col.GetComponent<BDGameScript>().GetPoseCompletion()) {
+				col.GetComponent<BDAutoMove>().SlowMove();
+				characterModel.GetComponent<RootMotionCharacterControlACTION>().SetJumping();
+			}
+		}
 	} 
 	
 	void OnTriggerStay () {
@@ -30,7 +36,7 @@ public class TreasureChestCollectionBoxScript : MonoBehaviour {
 			//Redirect the player character toward the next corner collider
 			Vector3 nextCornerPosition = col.GetComponent<BDAutoMove>().GetNextCornerPosition();
 			col.transform.LookAt(nextCornerPosition);
-			col.GetComponent<BDAutoMove>().startMoving();
+			col.GetComponent<BDAutoMove>().StartMoving();
 		}
 		
 	}
@@ -38,6 +44,7 @@ public class TreasureChestCollectionBoxScript : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		playerCharacter = GameObject.Find(PlayerCharacterName);
+		characterModel = GameObject.Find(characterModelName);
 	}
 	
 	

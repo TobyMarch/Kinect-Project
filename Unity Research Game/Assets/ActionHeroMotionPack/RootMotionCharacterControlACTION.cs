@@ -14,6 +14,7 @@ public class RootMotionCharacterControlACTION: MonoBehaviour
 	#region Private Variables
 	private bool isMoving = false;
 	private bool isRunning = false;
+	private bool isJumping = false;
 	#endregion
 	
 	/// <summary>
@@ -35,6 +36,13 @@ public class RootMotionCharacterControlACTION: MonoBehaviour
 	public void SetMovingAndRunning (bool moveState, bool runState) {
 		isMoving = moveState;
 		isRunning = runState;
+	}
+	/// <summary>
+	/// Sets the flag that triggers a jump animation, in lieu of keyboard input
+	/// </summary>
+	public void SetJumping () {
+		Debug.Log("SetJumping Called!");
+		isJumping = true;
 	}
 	
 	void Start()
@@ -115,6 +123,13 @@ public class RootMotionCharacterControlACTION: MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Alpha7)) animation.CrossFade("ropeclimb", 0.2f);
 		if (Input.GetKeyDown(KeyCode.Alpha8)) animation.CrossFade("hang", 0.2f);
 		if (Input.GetKeyDown(KeyCode.Alpha9)) animation.CrossFade("ropeswing", 0.2f);
+		
+		//New code to trigger animations without keyboard input
+		if (isJumping) {
+			Debug.Log("isJumping Flag hit in Update()!");
+			animation.CrossFade("eaglejump", 0.2f);
+			isJumping = false;	
+		}
 
 	}
 	

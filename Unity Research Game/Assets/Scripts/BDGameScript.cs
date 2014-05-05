@@ -100,7 +100,7 @@ public class BDGameScript : MonoBehaviour {
 	/// </summary>
 	public void StartGame () {
 		//GameObject.Find(PlayerCharacterName).GetComponent<BDAutoMove>().startMoving();
-		playerCharacter.GetComponent<BDAutoMove>().startMoving();
+		playerCharacter.GetComponent<BDAutoMove>().StartMoving();
 		continueGame = true;
 	}
 	/// <summary>
@@ -109,7 +109,7 @@ public class BDGameScript : MonoBehaviour {
 	public void EndGame () {
 		continueGame = false;
 		//GameObject.Find(PlayerCharacterName).GetComponent<BDAutoMove>().stopMoving();
-		playerCharacter.GetComponent<BDAutoMove>().stopMoving();
+		playerCharacter.GetComponent<BDAutoMove>().StopMoving();
 	}
 	#endregion
 	void Awake () {
