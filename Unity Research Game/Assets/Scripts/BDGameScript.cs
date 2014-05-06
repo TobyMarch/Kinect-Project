@@ -23,6 +23,10 @@ public class BDGameScript : MonoBehaviour {
 	/// GUIText to display the player's current score
 	/// </summary>
 	public GUIText coinCounter;
+	/// <summary>
+	/// GUIText to alert the user to their score updating
+	/// </summary>
+	public GUIText counterUpdate;
 	#endregion
 	#region private variables
 	/// <summary>
@@ -34,6 +38,8 @@ public class BDGameScript : MonoBehaviour {
 	/// </summary>
 	private bool poseComplete;
 	
+	private int updateTimeRemaining;
+	
 	
 	
 	/// <summary>
@@ -44,6 +50,7 @@ public class BDGameScript : MonoBehaviour {
 	#region Public Variables
 	public int coinValue = 1;
 	public int chestValue = 10;
+	public int updateDisplayTime = 20;
 	#endregion
 	
 	#region Score Functions
@@ -51,16 +58,29 @@ public class BDGameScript : MonoBehaviour {
 	/// Called whenever the player character picks up a coin. Called by CoinScript
 	/// </summary>
 	public void CoinCollected () {
-		playerScore += coinValue;	
+		playerScore += coinValue;
+		counterUpdate.text += "+" + coinValue + "\n";
+		updateTimeRemaining = updateDisplayTime;
+		counterUpdate.enabled = true;
 	}
 	
 	public void ChestCollected () {
-		playerScore += chestValue;	
+		playerScore += chestValue;
+		counterUpdate.text += "+" + chestValue + "\n";
+		updateTimeRemaining = updateDisplayTime;
+		counterUpdate.enabled = true;
 	}
 	
 	void UpdateScore () {
 		//Consistently update the score counter
 		coinCounter.text = "Score: " + playerScore.ToString();
+		if (updateTimeRemaining >= 0) {
+			updateTimeRemaining--;
+		}
+		else {
+			counterUpdate.enabled = false;
+			counterUpdate.text = "";
+		}
 	}
 	#endregion
 	

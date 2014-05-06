@@ -14,7 +14,7 @@ public class BDAutoMove : MonoBehaviour {
 	
 	#region public variables
 	//[SerializeField]
-	public float moveSpeed = 10.0f;
+	public float moveSpeed = 5.0f;
 	#endregion
 	
 	#region private variables

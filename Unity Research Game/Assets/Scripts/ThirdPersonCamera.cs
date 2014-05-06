@@ -45,8 +45,9 @@ public class ThirdPersonCamera : MonoBehaviour {
 	
 	
 	void Awake () {
-		follow = GameObject.FindWithTag("Player").transform;
+		//follow = GameObject.FindWithTag("Player").transform;
 		thirdPersonCharacter = GameObject.Find("Third Person PC");
+		follow = thirdPersonCharacter.transform;
 	}
 	// Use this for initialization
 	/*void Start () {

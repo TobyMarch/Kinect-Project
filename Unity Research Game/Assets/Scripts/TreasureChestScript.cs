@@ -15,7 +15,7 @@ public class TreasureChestScript : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter (Collider col) {
-		Debug.Log(gameObject.name + " was hit by " + col.name);
+		//Debug.Log(gameObject.name + " was hit by " + col.name);
 		vanish();
 		
 	}

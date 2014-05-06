@@ -507,7 +507,7 @@ public class TranslationLayer : MonoBehaviour {
                 gestureRecognitionClone = Instantiate(gestureRecognitionPrefab, avatarPosition, avatarRotation) as GameObject;
 
                 //make clone invisible
-                gestureRecognitionClone.GetComponentInChildren<Renderer>().enabled = true;
+                gestureRecognitionClone.GetComponentInChildren<Renderer>().enabled = false;
 
                 cloneCreated = true;//set flag to true
             }
@@ -570,6 +570,7 @@ public class TranslationLayer : MonoBehaviour {
 		/// <summary>
 		/// Sets LFWB, instructs the system to listen for the next whole-body gesture
 		/// Used to step through the pose list in an event-drive manner
+		/// New Code!
 		/// </summary>
 		public void ListenForNextWholeBodyGesture ()
 		{
@@ -1045,6 +1046,8 @@ void Start () {
 
         systemSounds =
             GameObject.Find(soundGameObjectName).GetComponent<SoundScript>();
+		//Disabled time-related feedback
+		feedbackText2.enabled = false;
         
         
 	}
@@ -1054,7 +1057,7 @@ void Update()
 {
     countdownTimer.UpdateMethod();
     demoCountdownTimer.UpdateMethod();
-    feedbackText2.text = countdownTimer.GetRemainingTime().ToString();
+    //feedbackText2.text = countdownTimer.GetRemainingTime().ToString();
 }
 
     /// <summary>
