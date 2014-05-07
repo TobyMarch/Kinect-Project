@@ -1,15 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TranslationLayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ButtonScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\TranslationLayer.cs" Line="596" Column="39" />
+      <File FileName="Assets\Scripts\TranslationLayer.cs" Line="596" Column="31" />
       <File FileName="Assets\Scripts\TreasureChestCollectionBoxScript.cs" Line="26" Column="3" />
-      <File FileName="Assets\ActionHeroMotionPack\RootMotionComputer.cs" Line="1" Column="1" />
-      <File FileName="Assets\ActionHeroMotionPack\RootMotionCharacterControlACTION.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ThirdPersonCamera.cs" Line="50" Column="3" />
-      <File FileName="Assets\Scripts\BDAutoMove.cs" Line="76" Column="3" />
-      <File FileName="Assets\Scripts\BDGameScript.cs" Line="53" Column="35" />
-      <File FileName="Assets\Scripts\gameCameraScript.cs" Line="48" Column="11" />
+      <File FileName="Assets\Scripts\BDAutoMove.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\BDGameScript.cs" Line="91" Column="21" />
+      <File FileName="Assets\Scripts\ButtonScript.cs" Line="160" Column="11" />
+      <File FileName="Assets\Scripts\CornerColliderScript.cs" Line="106" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

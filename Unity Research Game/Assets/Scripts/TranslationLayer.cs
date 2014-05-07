@@ -580,7 +580,7 @@ public class TranslationLayer : MonoBehaviour {
 				Debug.Log("LFWBG turned on in LFNWBG()");
 				//Brings Indicator Model to correct pose
 				StartAnimatingIndicatorModel();
-				feedbackText1.text = "Ready for next Pose!";
+				feedbackText1.text = "Match the Pose on the Left!";
 				//sets flag to false
 				heldCurrentPose = false;
 		
@@ -618,7 +618,7 @@ public class TranslationLayer : MonoBehaviour {
 			heldCurrentPose = false; //sets flag to false
 		
             exerciseScore = 0; //reset score to 0
-
+		
             if (listeningForWholeBodyGesture){
 				//feedbackText1.text = "In SLFBG, exerciseScore = " + exerciseScore;
 			//make timer count down
@@ -626,6 +626,42 @@ public class TranslationLayer : MonoBehaviour {
 			}
 			
         }
+	
+		/// <summary>
+		/// Prepares the TranslationLayer to start listening once the user hits the first corner
+		/// </summary>
+		public void StartWithoutListening () {
+			//Play sounds!
+            systemSounds.PlayGameStartSound();
+            systemSounds.PlayGameBackgroundNoise();
+            systemSounds.PlayGameMusic();
+
+            //set current keyPoint to 0
+            currentKeyPoint = 0;
+
+            //make carl assume the keypoint pose
+            indicatorModelKeyPoint = 0;
+
+            //StartAnimatingIndicatorModel();
+
+            //make listening=true
+			//New Code - this doesn't need to happen until the PC hits the first corner
+            //listeningForWholeBodyGesture = true;
+			//feedbackText1.text = "LFWBG turned on in START";
+		
+            isCheckingForExercise = true;
+		
+			heldCurrentPose = false; //sets flag to false
+		
+            exerciseScore = 0; //reset score to 0
+		
+			//This doesn't happen automatically at start any more, but left in for completion's sake
+            if (listeningForWholeBodyGesture){
+				//feedbackText1.text = "In SLFBG, exerciseScore = " + exerciseScore;
+			//make timer count down
+            	countdownTimer.StartCountdown();
+			}
+		}
 
         /// <summary>
         /// Checks if avatar and template are holding the same pose, In seated mode

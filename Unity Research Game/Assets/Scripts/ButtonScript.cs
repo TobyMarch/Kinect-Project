@@ -156,7 +156,10 @@ public class ButtonScript : MonoBehaviour {
     /// </summary>
     public void WholeBodyListenButtonPressed()
     {
-        GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().StartListeningForWholeBodyGesture();
+		//Old version - starts listening for a pose straight away
+        //GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().StartListeningForWholeBodyGesture();
+		//New version - setup only
+		GameObject.Find(intermediateObjectName).GetComponent<TranslationLayer>().StartWithoutListening();
 		//Moves camera to position of first scene, renders game UI
 		//GameObject.Find(mainCameraObjectName).GetComponent<gameCameraScript>().resetProgression();
 		Debug.Log("Button Pressed!");
