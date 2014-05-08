@@ -88,9 +88,10 @@ public class CornerColliderScript : MonoBehaviour {
 				//col.GetComponent<BDAutoMove>().calculateCurrentSpeed(nextPosition[randomSelect]);
 			}
 			//Debug checks to make sure that the collider knows where to send the player
-			Debug.DrawLine(transform.position, pointerA.transform.position, Color.green);
+			/*Debug.DrawLine(transform.position, pointerA.transform.position, Color.green);
 			Debug.DrawLine(transform.position, pointerB.transform.position, Color.red);
 			Debug.DrawLine(transform.position, pointerC.transform.position, Color.cyan);
+			*/
 		}
 	}
 	
@@ -141,6 +142,5 @@ public class CornerColliderScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 }
