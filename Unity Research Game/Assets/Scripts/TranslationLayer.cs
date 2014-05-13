@@ -570,7 +570,7 @@ public class TranslationLayer : MonoBehaviour {
 		/// <summary>
 		/// Sets LFWB, instructs the system to listen for the next whole-body gesture
 		/// Used to step through the pose list in an event-drive manner
-		/// New Code!
+		/// Added by Toby, March-May 2014
 		/// </summary>
 		public void ListenForNextWholeBodyGesture ()
 		{
@@ -629,6 +629,7 @@ public class TranslationLayer : MonoBehaviour {
 	
 		/// <summary>
 		/// Prepares the TranslationLayer to start listening once the user hits the first corner
+		/// Added by Toby, March-May 2014
 		/// </summary>
 		public void StartWithoutListening () {
 			//Play sounds!

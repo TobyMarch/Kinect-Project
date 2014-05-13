@@ -12,6 +12,9 @@ public class RootMotionCharacterControlACTION: MonoBehaviour
 	public CharacterController character;
 	#endregion
 	#region Private Variables
+	/// <summary>
+	/// Private bools allowing animations to be called programmatically, rather than with key input
+	/// </summary>
 	private bool isMoving = false;
 	private bool isRunning = false;
 	private bool isJumping = false;
@@ -41,7 +44,7 @@ public class RootMotionCharacterControlACTION: MonoBehaviour
 	/// Sets the flag that triggers a jump animation, in lieu of keyboard input
 	/// </summary>
 	public void SetJumping () {
-		Debug.Log("SetJumping Called!");
+		//Debug.Log("SetJumping Called!");
 		isJumping = true;
 	}
 	
@@ -101,6 +104,7 @@ public class RootMotionCharacterControlACTION: MonoBehaviour
 		{
 			targetMovementWeight = 1f;
 		}
+		//New Code
 		//if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) throttle = 1f;
 		if (isRunning) {
 			throttle = 1f;	
@@ -126,7 +130,7 @@ public class RootMotionCharacterControlACTION: MonoBehaviour
 		
 		//New code to trigger animations without keyboard input
 		if (isJumping) {
-			Debug.Log("isJumping Flag hit in Update()!");
+			//Debug.Log("isJumping Flag hit in Update()!");
 			animation.CrossFade("eaglejump", 0.2f);
 			isJumping = false;	
 		}

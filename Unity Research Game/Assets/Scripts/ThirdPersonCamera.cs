@@ -22,47 +22,61 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Script directing the movement of the main camera. Copied from online unity tutorial (see above)
+/// Used by: Tobias March
+/// Date: March-May 2014
+/// </summary>
 public class ThirdPersonCamera : MonoBehaviour {
 	
-	#region Variables (private)
+	#region Private Variables
 	[SerializeField]
+	/// <summary>
+	/// Private float holding the horizontal distance that the camera will sit behind the player character
+	/// </summary>
 	private float distanceAway;
 	[SerializeField]
+	/// <summary>
+	/// Private float holding the vertical distance that the camera will sit above the player character
+	/// </summary>
 	private float distanceUp;
 	[SerializeField]
+	/// <summary>
+	/// Private float controlling how quickly the camera adjusts to the player's movements
+	/// </summary>
 	private float smooth;
 	[SerializeField]
+	/// <summary>
+	/// Private transform used by the camera to track the player character
+	/// </summary>
 	private Transform follow;
+	/// <summary>
+	/// Private Vector3 holding the calculated position of the camera
+	/// </summary>
 	private Vector3 targetPosition;
+	/// <summary>
+	/// Private GameObject reference to the player character.
+	/// </summary>
 	private GameObject thirdPersonCharacter;
-	
-	#endregion
-	
-	#region Properties (public)
 	#endregion
 	
 	#region Unity event functions
-	
-	
+	/// <summary>
+	/// Used for initialization
+	/// </summary>
 	void Awake () {
-		//follow = GameObject.FindWithTag("Player").transform;
 		thirdPersonCharacter = GameObject.Find("Third Person PC");
 		follow = thirdPersonCharacter.transform;
 	}
-	// Use this for initialization
-	/*void Start () {
-		//follow = GameObject.FindWithTag("Player").transform;
-		thirdPersonCharacter = GameObject.Find("Third Person PC");
-		Debug.Log("TPC: " + thirdPersonCharacter.name);
-		//follow = thirdPersonCharacter.transform;
-	}*/
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 	
-	// LateUpdate is called once per frame, but after the regular update has completed
+	/// <summary>
+	/// LateUpdate is called once per frame, but after the regular update has completed
+	/// </summary>
 	void LateUpdate () {
 		//setting the target position to be correct offset from the PC
 		targetPosition = follow.position + follow.up * distanceUp - follow.forward * distanceAway;
@@ -72,8 +86,9 @@ public class ThirdPersonCamera : MonoBehaviour {
 		
 		// making a smooth transition between its current position and the position it wants to be in
 		transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * smooth);
-		// make sure the camera is looking the right way!
+		// check the move script to see whether the camera needs to follow directly
 		if (thirdPersonCharacter.GetComponent<BDAutoMove>().getDirectCameraFollow()) {
+			// make sure the camera is looking the right way!
 			transform.LookAt(follow);
 		}
 	}
